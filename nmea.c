@@ -65,7 +65,11 @@ static void NMEA_GGA_Parser(NMEA_GGA_t* un, uint8_t* p, int state){
 }
 
 void NMEAProcess(NMEA_t* un, uint8_t ch){
-	if(ch == '$' || un->index >= NMEABSIZE-1){
+	if(un->index >= NMEABSIZE-1){
+		un->index = 0;
+		un->pstart = false;
+	}
+	if(ch == '$'){
 		un->pstart = true;
 		un->index = 0;
 		un->state = 0;
