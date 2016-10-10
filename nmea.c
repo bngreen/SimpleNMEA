@@ -16,9 +16,6 @@
 #include "nmea.h"
 #include <stdlib.h>
 
-__weak void NMEAGGACallback(NMEA_GGA_t* un){
-}
-
 static void NMEA_GGA_Parser(NMEA_GGA_t* un, uint8_t* p, int state){
 	char* e;
 	switch(state){
@@ -117,5 +114,9 @@ void NMEAProcess(NMEA_t* un, uint8_t ch){
 }
 
 __weak void NMEAWrongChecksum(NMEA_t* un){
+
+}
+
+__weak void NMEAGGACallback(NMEA_GGA_t* un){
 
 }

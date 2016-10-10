@@ -51,8 +51,8 @@ typedef struct {
 	DECIMAL geoidHeight;
 } NMEA_GGA_t;
 
-__weak void NMEAGGACallback(NMEA_GGA_t* un);
-__weak void NMEAWrongChecksum(NMEA_t* un);
+void NMEAGGACallback(NMEA_GGA_t* un);
+void NMEAWrongChecksum(NMEA_t* un);
 void NMEAProcess(NMEA_t* un, uint8_t ch);
 
 #endif
