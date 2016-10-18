@@ -15,6 +15,7 @@
 
 #include "nmea.h"
 #include <stdlib.h>
+#include <string.h>
 
 static void NMEA_GGA_Parser(NMEA_GGA_t* un, uint8_t* p, int state){
 	char* e;
@@ -105,7 +106,7 @@ void NMEAProcess(NMEA_t* un, uint8_t ch){
 		int chks = strtol(un->buffer+un->ppos, NULL, 16);
 		if(chks == un->checksum){//validate data using the checksum
 			if(un->sentence == NMEA_GGA)
-				NMEAGGACallback((NMEA_GGA_t*)un->data);
+				NMEAGGACallback(un, (NMEA_GGA_t*)un->data);
 		}
 		else
 			NMEAWrongChecksum(un);
@@ -117,6 +118,6 @@ __weak void NMEAWrongChecksum(NMEA_t* un){
 
 }
 
-__weak void NMEAGGACallback(NMEA_GGA_t* un){
+__weak void NMEAGGACallback(NMEA_t* un, NMEA_GGA_t* g){
 
 }
